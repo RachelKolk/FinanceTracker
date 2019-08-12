@@ -10,9 +10,9 @@ class Stock < ApplicationRecord
     begin
         client = IEX::Api::Client.new(publishable_token: 'pk_9ed33d1688b244358bcbfdc5d0d68ac8')
         looked_up_stock = client.quote(ticker_symbol)
-        price = strip_commas(look_up_stock.l)
-        new(name: looked_up_stock.name,
-            ticker: looked_up_stock.symbol, last_price: price)
+        # price = strip_commas(look_up_stock.l)
+        new(name: looked_up_stock.company_name,
+            ticker: looked_up_stock.symbol, last_price: looked_up_stock.latest_price)
     rescue Exception => e
         return nil
     end
