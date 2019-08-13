@@ -6,6 +6,10 @@ class Stock < ApplicationRecord
     where(ticker: ticker_symbol).first
   end
 
+  def self.find_by_ticker(ticker_symbol)
+    where(ticker: ticker_symbol).first
+  end
+
   def self.new_from_lookup(ticker_symbol)
     begin
         client = IEX::Api::Client.new(publishable_token: 'pk_9ed33d1688b244358bcbfdc5d0d68ac8')
